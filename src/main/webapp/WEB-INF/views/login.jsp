@@ -25,12 +25,27 @@
 
 <body>
 
+
+
+
 <div class="container">
 
-    <form method="POST" action="${contextPath}/login" class="form-signin">
-        <h2 class="form-heading">Log in</h2>
+    <div class="wrapper">
+        <p style="text-align:center;">
+        <img  src="${contextPath}/resources/jpg/main_image.jpg" alt="Mountain View" style="width:304px;height:228px;">
+        </p>
+
+        <form method="POST" action="${contextPath}/login" name="Login_Form" class="form-signin">
+        <h3 class="form-signin-heading">Welcome on real estate site!</h3>
+        <hr class="colorgraph"><br>
+
+        <p style="text-align:center;">
+        <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+             alt="" >
+        </p>
 
         <div class="form-group ${error != null ? 'has-error' : ''}">
+
             <span>${message}</span>
             <input name="username" type="text" class="form-control" placeholder="Username"
                    autofocus="true"/>
@@ -43,6 +58,7 @@
         </div>
 
     </form>
+    </div>
 
 </div>
 <!-- /container -->
