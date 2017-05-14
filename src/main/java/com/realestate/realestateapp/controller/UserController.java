@@ -1,6 +1,9 @@
 package com.realestate.realestateapp.controller;
 
+import com.realestate.realestateapp.model.RealEstate;
+import com.realestate.realestateapp.model.SearchCriteria;
 import com.realestate.realestateapp.model.User;
+import com.realestate.realestateapp.service.RealEstateService;
 import com.realestate.realestateapp.service.SecurityService;
 import com.realestate.realestateapp.service.UserService;
 import com.realestate.realestateapp.validator.UserValidator;
@@ -11,6 +14,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Controller for {@link User}'s pages.
@@ -24,6 +31,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RealEstateService realEstateService;
 
     @Autowired
     private SecurityService securityService;
@@ -68,6 +78,60 @@ public class UserController {
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
     public String welcome(Model model) {
+        model.addAttribute("listRealEstates", this.realEstateService.findAll());
+        return "welcome";
+    }
+
+    @RequestMapping(value = "/welcome", method = RequestMethod.POST)
+    public String welcome(@ModelAttribute("userForm") SearchCriteria searchCriteria, BindingResult bindingResult, Model model) {
+
+        List<RealEstate> allRealEstates = this.realEstateService.findAll();
+        List<RealEstate> filteredRealEstates = new ArrayList<>();
+
+        Byte searchedRoomNumber = null;
+        Double searchedPriceFrom = null;
+        Double searchedPriceTo = null;
+
+        try {
+            searchedRoomNumber = Byte.valueOf(searchCriteria.getRoomsNumber());
+            searchedPriceFrom = Double.parseDouble(searchCriteria.getPriceFrom());
+            searchedPriceTo = Double.parseDouble(searchCriteria.getPriceTo());
+        } catch (NumberFormatException ex) {
+            ex.printStackTrace();
+        }
+
+
+        for(RealEstate realEstate: allRealEstates) {
+
+            boolean conditionForAdding = true;
+
+            if((searchedRoomNumber == null) && (searchedPriceFrom == null) && (searchedPriceTo == null)) {
+                filteredRealEstates.addAll(allRealEstates);
+                break;
+            }
+
+            if(searchedRoomNumber != null) {
+                conditionForAdding = conditionForAdding && realEstate.getNrooms().equals(searchedRoomNumber);
+            }
+
+            if(searchedPriceFrom != null) {
+                conditionForAdding = conditionForAdding && (realEstate.getInitPrice() >= searchedPriceFrom);
+            }
+
+            if(searchedPriceTo != null) {
+                conditionForAdding = conditionForAdding && (realEstate.getInitPrice() <= searchedPriceTo);
+            }
+
+            if(conditionForAdding) {
+                filteredRealEstates.add(realEstate);
+            }
+        }
+
+        /*if(filteredRealEstates.isEmpty()) {
+            filteredRealEstates.addAll(allRealEstates);
+        }*/
+
+        model.addAttribute("listRealEstates", filteredRealEstates);
         return "welcome";
     }
 

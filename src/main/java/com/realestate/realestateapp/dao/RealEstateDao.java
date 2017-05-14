@@ -1,7 +1,10 @@
 package com.realestate.realestateapp.dao;
 
-import com.realestate.realestateapp.model.Address;
+import com.realestate.realestateapp.model.RealEstate;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface RealEstateDao extends JpaRepository<Address, Long> {
+import java.util.List;
+
+public interface RealEstateDao extends JpaRepository<RealEstate, Long> {
+    List<RealEstate> findAll();
 }

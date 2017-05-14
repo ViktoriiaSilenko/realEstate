@@ -1,7 +1,7 @@
 package com.realestate.realestateapp.model;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
+
 import java.sql.Date;
 
 /**
@@ -29,18 +29,14 @@ public class RealEstate {
     @Column(name = "dateIn", unique = false, nullable = false)
     private Date dateIn;
 
-   /* @Column(name = "dateOut", unique = false, nullable = false)
-    private Date dateOut;*/
-
     @Column(name = "initPrice", nullable = false, precision = 10, scale = 2)
-    private BigDecimal initPrice;
+    private Double initPrice;
 
     @Column(name = "userDesc", unique = true, nullable = false, length = 300)
     private String userDescription;
 
-    @OneToOne(targetEntity = Address.class, fetch = FetchType.LAZY, optional = false, orphanRemoval = true)
-    @JoinColumn(name = "id_addr", nullable = false)
-    private Address address;
+    @Column(name = "fullAddress", unique = true, nullable = false, length = 300)
+    private String fullAddress;
 
     @ManyToOne
     @JoinColumn(name = "owner_id")
@@ -79,19 +75,11 @@ public class RealEstate {
         this.dateIn = dateIn;
     }
 
-    /*public Date getDateOut() {
-        return dateOut;
-    }
-
-    public void setDateOut(Date dateOut) {
-        this.dateOut = dateOut;
-    }*/
-
-    public BigDecimal getInitPrice() {
+    public Double getInitPrice() {
         return initPrice;
     }
 
-    public void setInitPrice(BigDecimal initPrice) {
+    public void setInitPrice(Double initPrice) {
         this.initPrice = initPrice;
     }
 
@@ -111,12 +99,12 @@ public class RealEstate {
         this.id = id;
     }
 
-    public Address getAddress() {
-        return address;
+    public String getFullAddress() {
+        return fullAddress;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setFullAddress(String fullAddress) {
+        this.fullAddress = fullAddress;
     }
 
     public User getOwner() {
@@ -136,8 +124,7 @@ public class RealEstate {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are
-        // not set
+
         if (!(object instanceof RealEstate)) {
             return false;
         }

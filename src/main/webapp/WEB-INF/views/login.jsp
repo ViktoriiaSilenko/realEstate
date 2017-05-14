@@ -31,12 +31,12 @@
 <div class="container">
 
     <div class="wrapper">
-        <p style="text-align:center;">
-        <img  src="${contextPath}/resources/jpg/main_image.jpg" alt="Mountain View" style="width:304px;height:228px;">
+        <p style="text-align:left;">
+        <img  src="${contextPath}/resources/jpg/main_image.jpg" alt="Logo" style="width:304px;height:228px;">
         </p>
 
         <form method="POST" action="${contextPath}/login" name="Login_Form" class="form-signin">
-        <h3 class="form-signin-heading">Welcome on real estate site!</h3>
+        <h3 class="form-signin-heading">Real estate site</h3>
         <hr class="colorgraph"><br>
 
         <p style="text-align:center;">
