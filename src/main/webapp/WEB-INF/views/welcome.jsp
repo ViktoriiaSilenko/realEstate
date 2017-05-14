@@ -46,7 +46,7 @@
 
 
         <p style="text-align:center;">
-        <h3> Please review actual <b>list of real estate objects: </b> </h3>
+        <h3><b> Actual list of real estate objects: </b> </h3>
 
         <c:if test="${not empty listRealEstates}">
 
