@@ -3,13 +3,6 @@ package com.realestate.realestateapp.model;
 import javax.persistence.*;
 import java.util.Set;
 
-/**
- * Simple JavaBean domain object that represents a User.
- *
- * @author Viktoriia Silenko
- * @version 1.0
- */
-
 @Entity
 @Table(name = "users")
 public class User {

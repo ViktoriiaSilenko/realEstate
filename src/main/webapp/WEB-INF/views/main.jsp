@@ -34,7 +34,7 @@
 
     <br>
 
-    <form method="post" action="${contextPath}/welcome" modelAttribute="searchCriteria">
+    <form method="post" action="${contextPath}/main" modelAttribute="searchCriteria">
     <p>
         <b>Rooms number:</b> <input type="text" name="roomsNumber" size="10">
         <b>Price from:</b> <input type="text" name="priceFrom" size="10">

@@ -1,4 +1,4 @@
-package com.realestate.realestateapp.model;
+package com.realestate.realestateapp.search;
 
 public class SearchCriteria {
     private String priceFrom;

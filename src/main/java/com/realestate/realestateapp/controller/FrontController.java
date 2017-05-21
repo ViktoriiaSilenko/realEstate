@@ -1,7 +1,7 @@
 package com.realestate.realestateapp.controller;
 
 import com.realestate.realestateapp.model.RealEstate;
-import com.realestate.realestateapp.model.SearchCriteria;
+import com.realestate.realestateapp.search.SearchCriteria;
 import com.realestate.realestateapp.model.User;
 import com.realestate.realestateapp.service.RealEstateService;
 import com.realestate.realestateapp.service.SecurityService;
@@ -17,17 +17,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
-/**
- * Controller for {@link User}'s pages.
- *
- * @author Viktoriia Silenko
- * @version 1.0
- */
 
 @Controller
-public class UserController {
+public class FrontController {
 
     @Autowired
     private UserService userService;
@@ -60,7 +52,7 @@ public class UserController {
 
         securityService.autoLogin(userForm.getUsername(), userForm.getConfirmPassword());
 
-        return "redirect:/welcome";
+        return "redirect:/main";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -76,14 +68,14 @@ public class UserController {
         return "login";
     }
 
-    @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
-    public String welcome(Model model) {
+    @RequestMapping(value = {"/", "/main"}, method = RequestMethod.GET)
+    public String main(Model model) {
         model.addAttribute("listRealEstates", this.realEstateService.findAll());
-        return "welcome";
+        return "main";
     }
 
-    @RequestMapping(value = "/welcome", method = RequestMethod.POST)
-    public String welcome(@ModelAttribute("userForm") SearchCriteria searchCriteria, BindingResult bindingResult, Model model) {
+    @RequestMapping(value = "/main", method = RequestMethod.POST)
+    public String main(@ModelAttribute("userForm") SearchCriteria searchCriteria, BindingResult bindingResult, Model model) {
 
         List<RealEstate> allRealEstates = this.realEstateService.findAll();
         List<RealEstate> filteredRealEstates = new ArrayList<>();
@@ -135,16 +127,12 @@ public class UserController {
             }
         }
 
-        /*if(filteredRealEstates.isEmpty()) {
-            filteredRealEstates.addAll(allRealEstates);
-        }*/
-
         model.addAttribute("listRealEstates", filteredRealEstates);
-        return "welcome";
+        return "main";
     }
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
-    public String admin(Model model) {
+    public String admin() {
         return "admin";
     }
 }
