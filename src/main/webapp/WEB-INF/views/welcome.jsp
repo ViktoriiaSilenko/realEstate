@@ -60,6 +60,9 @@
                             <td><u>price:</u> ${element.initPrice}$ ,</td>
                             <td><u>address:</u> ${element.fullAddress}$ .</td>
                         </tr>
+                        <p style="text-align:left;">
+                            <img src="${contextPath}/resources/jpg/homes_photos/${element.photoName}" style="width:400px;height:250px;"/>
+                        </p>
                     </li>
                 </c:forEach>
             </ul>

@@ -4,11 +4,6 @@ import javax.persistence.*;
 
 import java.sql.Date;
 
-/**
- *
- * @author Sergei
- * @version 1.0
- */
 @Entity
 @Table(name = "real_estates")
 public class RealEstate {
@@ -34,6 +29,9 @@ public class RealEstate {
 
     @Column(name = "userDesc", unique = true, nullable = false, length = 300)
     private String userDescription;
+
+    @Column(name = "photoName", unique = true, nullable = false, length = 300)
+    private String photoName;
 
     @Column(name = "fullAddress", unique = true, nullable = false, length = 300)
     private String fullAddress;
@@ -99,6 +97,14 @@ public class RealEstate {
         this.id = id;
     }
 
+    public String getPhotoName() {
+        return photoName;
+    }
+
+    public void setPhotoName(String photoName) {
+        this.photoName = photoName;
+    }
+
     public String getFullAddress() {
         return fullAddress;
     }
@@ -137,7 +143,17 @@ public class RealEstate {
 
     @Override
     public String toString() {
-        return "test.entities.RealEstateEntity[ id=" + id + " ]";
+        return "RealEstate{" +
+                "id=" + id +
+                ", type='" + type + '\'' +
+                ", area=" + area +
+                ", nrooms=" + nrooms +
+                ", dateIn=" + dateIn +
+                ", initPrice=" + initPrice +
+                ", userDescription='" + userDescription + '\'' +
+                ", photoName='" + photoName + '\'' +
+                ", fullAddress='" + fullAddress + '\'' +
+                ", owner=" + owner +
+                '}';
     }
-
 }

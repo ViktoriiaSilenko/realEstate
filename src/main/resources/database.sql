@@ -47,6 +47,7 @@ CREATE TABLE real_estates (
   nrooms TINYINT(4) NOT NULL,
   type VARCHAR(100) NOT NULL,
   userDesc LONGTEXT NOT NULL,
+  photoName VARCHAR(100) NOT NULL,
   fullAddress LONGTEXT NOT NULL,
   owner_id INT(11) NULL DEFAULT NULL,
 
@@ -65,7 +66,6 @@ INSERT INTO roles VALUES (2, 'ROLE_ADMIN');
 
 INSERT INTO user_roles VALUES (1, 2);
 
-insert into real_estates values (1, 50, '2017-05-26', 3000, 2, 'flat', 'Good new flat with 2 big rooms', 'Kyiv, Pushkinska str, 38, flat 86', null);
-insert into real_estates values (2, 70, '2017-05-29', 5000, 3, 'flat', 'Good new flat with 3 rooms', 'Kyiv, Sumska str, 18, flat 5', null);
-insert into real_estates values (3, 36, '2017-05-30', 2000, 1, 'flat', 'Just gostinka', 'Kharkiv, Ivanova str, 380, flat 77', null);
-
+insert into real_estates values (1, 50, '2017-05-26', 3000, 2, 'flat', 'Good new flat with 2 big rooms', 'home01.jpg', 'Kyiv, Pushkinska str, 38, flat 86', null);
+insert into real_estates values (2, 70, '2017-05-29', 5000, 3, 'flat', 'Good new flat with 3 rooms', 'home02.jpg', 'Kyiv, Sumska str, 18, flat 5', null);
+insert into real_estates values (3, 36, '2017-05-30', 2000, 1, 'flat', 'Just gostinka', 'home03.jpg', 'Kharkiv, Ivanova str, 380, flat 77', null);

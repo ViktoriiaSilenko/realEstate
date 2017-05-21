@@ -93,9 +93,17 @@ public class UserController {
         Double searchedPriceTo = null;
 
         try {
-            searchedRoomNumber = Byte.valueOf(searchCriteria.getRoomsNumber());
-            searchedPriceFrom = Double.parseDouble(searchCriteria.getPriceFrom());
-            searchedPriceTo = Double.parseDouble(searchCriteria.getPriceTo());
+            if (!searchCriteria.getRoomsNumber().isEmpty()) {
+                searchedRoomNumber = Byte.valueOf(searchCriteria.getRoomsNumber());
+            }
+
+            if (!searchCriteria.getPriceFrom().isEmpty()) {
+                searchedPriceFrom = Double.parseDouble(searchCriteria.getPriceFrom());
+            }
+
+            if (!searchCriteria.getPriceTo().isEmpty()) {
+                searchedPriceTo = Double.parseDouble(searchCriteria.getPriceTo());
+            }
         } catch (NumberFormatException ex) {
             ex.printStackTrace();
         }
