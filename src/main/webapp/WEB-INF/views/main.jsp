@@ -34,43 +34,48 @@
 
     <br>
 
+    <span style="float:left;">
     <form method="post" action="${contextPath}/main" modelAttribute="searchCriteria">
-    <p>
+
         <b>Rooms number:</b> <input type="text" name="roomsNumber" size="10">
-        <b>Price from:</b> <input type="text" name="priceFrom" size="10">
-        <b>Price to:</b> <input type="text" name="priceTo" size="10">
+        <b>Price:</b> <input type="text" name="priceFrom" size="10">
+        <b> &#8212; </b> <input type="text" name="priceTo" size="10">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        <button type="submit">Search</button>
-    </p>
+        <button type="submit"><b>Search</b></button>
+
     </form>
+    </span>
 
+    <span style="border-left:20px;">
+    <form method="get" action="${contextPath}/main">
+        <button type="submit"><b>Show All</b></button>
+    </form>
+    </span>
 
-        <p style="text-align:center;">
-        <h3><b> Actual list of real estate objects: </b> </h3>
+    <br>
 
-        <c:if test="${not empty listRealEstates}">
+    <p style="text-align:center;">
+    <h3><b> Actual list of real estate objects: </b> </h3>
 
-            <ul>
-                <c:forEach var="element" items="${listRealEstates}">
-                    <li>
-                        <tr>
-                            <td>${element.userDescription}: </td>
-                            <td><u>rooms number:</u> ${element.nrooms},</td>
-                            <td><u>total area:</u> ${element.area},</td>
-                            <td><u>price:</u> ${element.initPrice}$ ,</td>
-                            <td><u>address:</u> ${element.fullAddress}$ .</td>
-                        </tr>
-                        <p style="text-align:left;">
-                            <img src="${contextPath}/resources/jpg/homes_photos/${element.photoName}" style="width:400px;height:250px;"/>
-                        </p>
-                    </li>
-                </c:forEach>
-            </ul>
+    <c:if test="${not empty listRealEstates}">
 
-        </c:if>
+        <ul>
+            <c:forEach var="element" items="${listRealEstates}">
+                <li>
+                    <p>${element.userDescription}: </p>
+                    <p><i>rooms number:</i> ${element.nrooms},</p>
+                    <p><i>total area:</i> ${element.area},</p>
+                    <p><i>price:</i> ${element.initPrice}$ ,</p>
+                    <p><i>address:</i> ${element.fullAddress} .</p>
 
+                    <p style="text-align:left;">
+                        <img src="${contextPath}/resources/jpg/homes_photos/${element.photoName}" style="width:400px;height:250px;"/>
+                    </p>
+                </li>
+            </c:forEach>
+        </ul>
 
-
+    </c:if>
     </p>
 
 </div>
