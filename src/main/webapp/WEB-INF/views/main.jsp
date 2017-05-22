@@ -37,9 +37,14 @@
     <span style="float:left;">
     <form method="post" action="${contextPath}/main" modelAttribute="searchCriteria">
 
-        <b>Rooms number:</b> <input type="text" name="roomsNumber" size="10">
-        <b>Price:</b> <input type="text" name="priceFrom" size="10">
-        <b> &#8212; </b> <input type="text" name="priceTo" size="10">
+        <b>Rooms number:</b> <input list="roomsNumberList" type="text" name="roomsNumber" size="10"/>
+        <datalist id="roomsNumberList">
+            <option value="1">
+            <option value="2">
+            <option value="3">
+        </datalist>
+        <b>Price:</b> <input type="text" name="priceFrom" size="10"/>
+        <b> &#8212; </b> <input type="text" name="priceTo" size="10"/>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <button type="submit"><b>Search</b></button>
 
