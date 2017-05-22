@@ -43,8 +43,22 @@
             <option value="2">
             <option value="3">
         </datalist>
-        <b>Price:</b> <input type="text" name="priceFrom" size="10"/>
-        <b> &#8212; </b> <input type="text" name="priceTo" size="10"/>
+        <b>Price:</b> <input list="priceFromList" type="text" name="priceFrom" size="10"/>
+        <datalist id="priceFromList">
+            <option value="2000">
+            <option value="3000">
+            <option value="4000">
+            <option value="5000">
+            <option value="6000">
+        </datalist>
+        <b> &#8212; </b> <input list="priceToList" type="text" name="priceTo" size="10"/>
+        <datalist id="priceToList">
+            <option value="6000">
+            <option value="7000">
+            <option value="8000">
+            <option value="9000">
+            <option value="10000">
+        </datalist>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <button type="submit"><b>Search</b></button>
 
