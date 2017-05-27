@@ -4,65 +4,31 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<div class="container" style="width: 960px;margin: 0 auto;border-left: 0px solid #c0d3e8;border-right: 0px solid #c0d3e8;">
 
-    <title>Log in with your account</title>
+        <div class="wrapper">
 
-    <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-    <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
+            <form method="POST" action="${contextPath}/login" name="Login_Form" class="form-signin">
 
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+                <p style="text-align:left;">
+                    <h3 class="form-signin-heading">Real estate site</h3>
+                    <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+                         alt="" >
+                </p>
 
-</head>
+                <div class="form-group ${error != null ? 'has-error' : ''}">
 
-<body>
+                    <span>${message}</span>
+                    <input name="username" type="text" class="form-control" placeholder="Username"
+                           autofocus="true"/>
+                    <input name="password" type="password" class="form-control" placeholder="Password"/>
+                    <span>${error}</span>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
+                    <h4 class="text-center"><a href="${contextPath}/registration">Create an account</a></h4>
+                </div>
 
-
-
-<div class="container">
-
-    <div class="wrapper">
-        <p style="text-align:left;">
-        <img  src="${contextPath}/resources/jpg/main_image.jpg" alt="Logo" style="width:304px;height:228px;">
-        </p>
-
-        <form method="POST" action="${contextPath}/login" name="Login_Form" class="form-signin">
-        <h3 class="form-signin-heading">Real estate site</h3>
-        <hr class="colorgraph"><br>
-
-        <p style="text-align:center;">
-        <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
-             alt="" >
-        </p>
-
-        <div class="form-group ${error != null ? 'has-error' : ''}">
-
-            <span>${message}</span>
-            <input name="username" type="text" class="form-control" placeholder="Username"
-                   autofocus="true"/>
-            <input name="password" type="password" class="form-control" placeholder="Password"/>
-            <span>${error}</span>
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
-            <h4 class="text-center"><a href="${contextPath}/registration">Create an account</a></h4>
+            </form>
         </div>
-
-    </form>
-    </div>
-
 </div>
-<!-- /container -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
-</body>
-</html>
