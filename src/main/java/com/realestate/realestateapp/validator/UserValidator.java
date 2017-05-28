@@ -8,8 +8,15 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 @Component
 public class UserValidator implements Validator {
+
+    private static final String EMAIL_PATTERN =
+            "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                    + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
     @Autowired
     private UserService userService;
@@ -23,6 +30,7 @@ public class UserValidator implements Validator {
     public void validate(Object o, Errors errors) {
         User user = (User) o;
 
+        // username validation
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "Required");
         if (user.getUsername().length() < 8 || user.getUsername().length() > 32) {
             errors.rejectValue("username", "Size.userForm.username");
@@ -32,6 +40,7 @@ public class UserValidator implements Validator {
             errors.rejectValue("username", "Duplicate.userForm.username");
         }
 
+        // password validation
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "Required");
         if (user.getPassword().length() < 8 || user.getPassword().length() > 32) {
             errors.rejectValue("password", "Size.userForm.password");
@@ -40,5 +49,21 @@ public class UserValidator implements Validator {
         if (!user.getConfirmPassword().equals(user.getPassword())) {
             errors.rejectValue("confirmPassword", "Different.userForm.password");
         }
+
+        // email validation
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "Required");
+
+        if (userService.findByEmail(user.getEmail()) != null) {
+            errors.rejectValue("email", "Duplicate.userForm.email");
+        }
+
+        if (!Pattern.compile(EMAIL_PATTERN).matcher(user.getEmail()).matches()) {
+            errors.rejectValue("email", "Invalid.userForm.email");
+        }
+
+        if (user.getEmail().length() < 9 || user.getEmail().length() > 32) {
+            errors.rejectValue("email", "Size.userForm.email");
+        }
+
     }
 }
