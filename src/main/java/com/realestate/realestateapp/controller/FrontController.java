@@ -1,8 +1,8 @@
 package com.realestate.realestateapp.controller;
 
 import com.realestate.realestateapp.model.RealEstate;
-import com.realestate.realestateapp.search.SearchCriteria;
 import com.realestate.realestateapp.model.User;
+import com.realestate.realestateapp.search.SearchCriteria;
 import com.realestate.realestateapp.service.RealEstateService;
 import com.realestate.realestateapp.service.SecurityService;
 import com.realestate.realestateapp.service.UserService;
@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -32,6 +33,35 @@ public class FrontController {
 
     @Autowired
     private UserValidator userValidator;
+
+    @RequestMapping(value = "/manageUsers", method = RequestMethod.GET)
+    public String manageUsers(Model model) {
+
+        model.addAttribute("listUsers", this.userService.findAll());
+        return "manageUsers";
+    }
+
+    @RequestMapping("/removeUser/{id}")
+    public String removeUser(@PathVariable("id") int id){
+        this.userService.deleteById(new Long(id));
+
+        return "redirect:/manageUsers";
+    }
+
+    @RequestMapping("/editUser/{id}")
+    public String editUser(@PathVariable("id") int id, Model model){
+        model.addAttribute("user", this.userService.findById(new Long(id)));
+        model.addAttribute("listUsers", this.userService.findAll());
+
+        return "redirect:/manageUsers";
+    }
+
+    @RequestMapping(value = "/users/add", method = RequestMethod.POST)
+    public String addUser(@ModelAttribute("user") User user, BindingResult bindingResult){
+        this.userService.save(user);
+
+        return "redirect:/manageUsers";
+    }
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {

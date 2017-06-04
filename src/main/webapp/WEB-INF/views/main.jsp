@@ -10,7 +10,12 @@
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
 
-        <h3 align="right"><a onclick="document.forms['logoutForm'].submit()">Logout</a></h3>
+        <table align="right" cellspacing="20" cellpadding="20">
+            <tr>
+                <td style="padding: 0 15px;"><h3><a href="${contextPath}/manageUsers">Manage users</a></h3></td>
+                <td style="padding: 0 15px;"><h3><a onclick="document.forms['logoutForm'].submit()">Logout</a></h3></td>
+            </tr>
+        </table>
 
         <h2>Welcome, ${pageContext.request.userPrincipal.name}!</h2>
 
