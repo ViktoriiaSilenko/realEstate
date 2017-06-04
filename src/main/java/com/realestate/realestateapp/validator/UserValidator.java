@@ -8,7 +8,6 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Component
@@ -17,6 +16,9 @@ public class UserValidator implements Validator {
     private static final String EMAIL_PATTERN =
             "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                     + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
+    private static final int MIN_ALLOWED_USER_FIELD_LENGTH = 8;
+    private static final int MAX_ALLOWED_USER_FIELD_LENGTH = 32;
 
     @Autowired
     private UserService userService;
@@ -30,40 +32,51 @@ public class UserValidator implements Validator {
     public void validate(Object o, Errors errors) {
         User user = (User) o;
 
-        // username validation
+        validateUserName(user.getUsername(), errors);
+
+        validateUserPassword(user.getPassword(), user.getConfirmPassword(), errors);
+
+        validateUserEmail(user.getEmail(), errors);
+    }
+
+    private void validateUserName(String userName, Errors errors) {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "Required");
-        if (user.getUsername().length() < 8 || user.getUsername().length() > 32) {
+        int userNameLength = userName.length();
+        if ((userNameLength < MIN_ALLOWED_USER_FIELD_LENGTH) || (userNameLength > MAX_ALLOWED_USER_FIELD_LENGTH)) {
             errors.rejectValue("username", "Size.userForm.username");
         }
 
-        if (userService.findByUsername(user.getUsername()) != null) {
+        if (userService.findByUsername(userName) != null) {
             errors.rejectValue("username", "Duplicate.userForm.username");
         }
+    }
 
-        // password validation
+    private void validateUserPassword(String userPassword, String confirmPassword, Errors errors) {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "Required");
-        if (user.getPassword().length() < 8 || user.getPassword().length() > 32) {
+        int userPasswordLength = userPassword.length();
+        if ((userPasswordLength < MIN_ALLOWED_USER_FIELD_LENGTH) || (userPasswordLength > MAX_ALLOWED_USER_FIELD_LENGTH)) {
             errors.rejectValue("password", "Size.userForm.password");
         }
 
-        if (!user.getConfirmPassword().equals(user.getPassword())) {
+        if (!confirmPassword.equals(userPassword)) {
             errors.rejectValue("confirmPassword", "Different.userForm.password");
         }
+    }
 
-        // email validation
+    private void validateUserEmail(String userEmail, Errors errors) {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "Required");
 
-        if (userService.findByEmail(user.getEmail()) != null) {
+        if (userService.findByEmail(userEmail) != null) {
             errors.rejectValue("email", "Duplicate.userForm.email");
         }
 
-        if (!Pattern.compile(EMAIL_PATTERN).matcher(user.getEmail()).matches()) {
+        if (!Pattern.compile(EMAIL_PATTERN).matcher(userEmail).matches()) {
             errors.rejectValue("email", "Invalid.userForm.email");
         }
 
-        if (user.getEmail().length() < 9 || user.getEmail().length() > 32) {
+        int userEmailLength = userEmail.length();
+        if ((userEmailLength < MIN_ALLOWED_USER_FIELD_LENGTH) || (userEmailLength > MAX_ALLOWED_USER_FIELD_LENGTH)) {
             errors.rejectValue("email", "Size.userForm.email");
         }
-
     }
 }
