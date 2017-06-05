@@ -12,10 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +32,8 @@ public class FrontController {
     @Autowired
     private UserValidator userValidator;
 
+    private Long modifiedUserId = -1L;
+
     @RequestMapping(value = "/manageUsers", method = RequestMethod.GET)
     public String manageUsers(Model model) {
 
@@ -52,6 +51,7 @@ public class FrontController {
 
     @RequestMapping("/editUser/{id}")
     public String editUser(@PathVariable("id") int id, ModelMap model){
+        modifiedUserId = new Long(id);
         model.addAttribute("user", this.userService.findById(new Long(id)));
         model.addAttribute("listUsers", this.userService.findAll());
 
@@ -59,8 +59,16 @@ public class FrontController {
     }
 
     @RequestMapping(value = "/users/add", method = RequestMethod.POST)
-    public String addUser(@ModelAttribute("user") User user, BindingResult bindingResult){
-        this.userService.save(user);
+    public String addUser(@ModelAttribute("user") User user, @RequestParam("operationName") String operationName,
+                          BindingResult bindingResult){
+        if(operationName.equals("add")) {
+            this.userService.save(user);
+        }
+
+        if (!modifiedUserId.equals(Long.valueOf(-1L)) && (user.getId() == null) && (operationName.equals("edit"))) {
+            user.setId(modifiedUserId);
+            this.userService.save(user);
+        }
 
         return "redirect:/manageUsers";
     }
