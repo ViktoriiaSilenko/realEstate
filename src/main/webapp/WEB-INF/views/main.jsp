@@ -47,11 +47,10 @@
             <option value="10000">
         </datalist>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        <button type="submit"><b>Search</b></button>
+        <button type="submit"><b>Search</b></button> &nbsp; &nbsp;
 
     </form>
     </span>
-
     <span style="border-left:20px;">
     <form method="get" action="${contextPath}/main">
         <button type="submit"><b>Show All</b></button>
