@@ -39,7 +39,19 @@
             </div>
         </spring:bind>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+        <table align="center" cellspacing="20" cellpadding="20">
+            <tr>
+                <td style="padding: 0 15px; width: 65%"><button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button></td>
+                <td style="padding: 0 15px;"><h3><a href="${contextPath}/login">Cancel</a></h3></td>
+            </tr>
+        </table>
+
     </form:form>
 
 </div>
+
+</br>
+</br>
+</br>
+</br>
+</br>

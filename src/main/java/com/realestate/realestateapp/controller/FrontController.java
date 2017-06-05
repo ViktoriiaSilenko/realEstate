@@ -10,6 +10,7 @@ import com.realestate.realestateapp.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,6 +38,7 @@ public class FrontController {
     @RequestMapping(value = "/manageUsers", method = RequestMethod.GET)
     public String manageUsers(Model model) {
 
+        model.addAttribute("user", new User());
         model.addAttribute("listUsers", this.userService.findAll());
         return "manageUsers";
     }
@@ -49,11 +51,11 @@ public class FrontController {
     }
 
     @RequestMapping("/editUser/{id}")
-    public String editUser(@PathVariable("id") int id, Model model){
+    public String editUser(@PathVariable("id") int id, ModelMap model){
         model.addAttribute("user", this.userService.findById(new Long(id)));
         model.addAttribute("listUsers", this.userService.findAll());
 
-        return "redirect:/manageUsers";
+        return "manageUsers";
     }
 
     @RequestMapping(value = "/users/add", method = RequestMethod.POST)
