@@ -91,7 +91,7 @@
     </spring:bind>
 
     <c:if test="${!empty user.id}">
-        <input type='hidden' id='operationName' name='operationName' value='edit'/>
+        <input type='hidden' id='userId' name='userId' value='${user.id}'/>
         <div align="center">
             <input type="submit" value="<spring:message text="Edit user"/>"/>
         </div>
@@ -102,7 +102,7 @@
     </c:if>
 
     <c:if test="${empty user.id}">
-        <input type='hidden' id='operationName' name='operationName' value='add'/>
+        <input type='hidden' id='userId' name='userId' value='-1'/>
         <div align="center">
             <input type="submit" value="<spring:message text="Add user"/>"/>
         </div>

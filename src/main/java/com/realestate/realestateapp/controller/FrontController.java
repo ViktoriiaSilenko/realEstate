@@ -32,8 +32,6 @@ public class FrontController {
     @Autowired
     private UserValidator userValidator;
 
-    private Long modifiedUserId = -1L;
-
     @RequestMapping(value = "/manageUsers", method = RequestMethod.GET)
     public String manageUsers(Model model) {
 
@@ -51,7 +49,6 @@ public class FrontController {
 
     @RequestMapping("/editUser/{id}")
     public String editUser(@PathVariable("id") int id, ModelMap model){
-        modifiedUserId = new Long(id);
         model.addAttribute("user", this.userService.findById(new Long(id)));
         model.addAttribute("listUsers", this.userService.findAll());
 
@@ -59,14 +56,12 @@ public class FrontController {
     }
 
     @RequestMapping(value = "/users/add", method = RequestMethod.POST)
-    public String addUser(@ModelAttribute("user") User user, @RequestParam("operationName") String operationName,
+    public String addUser(@ModelAttribute("user") User user, @RequestParam("userId") int userId,
                           BindingResult bindingResult){
-        if(operationName.equals("add")) {
+        if (!new Long(-1).equals(new Long(userId))) {
+            user.setId(new Long(userId));
             this.userService.save(user);
-        }
-
-        if (!modifiedUserId.equals(Long.valueOf(-1L)) && (user.getId() == null) && (operationName.equals("edit"))) {
-            user.setId(modifiedUserId);
+        } else {
             this.userService.save(user);
         }
 
