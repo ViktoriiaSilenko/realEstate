@@ -4,35 +4,40 @@
 
 <html lang="en">
 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-        <title>Real estate</title>
+    <title>Real estate</title>
 
-        <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-        <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
+    <link media="all" rel="stylesheet" href="${contextPath}/resources/css/main.css">
 
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <!--link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+        <link href="${contextPath}/resources/css/common.css" rel="stylesheet"-->
 
-    </head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" defer></script>
+    <script>window.jQuery || document.write('<script src="${contextPath}/resources/js/jquery-1.12.4.min.js" defer><\/script>')</script>
+    <script src="${contextPath}/resources/js/jquery.main.js" defer></script>
 
-    <body>
-        <jsp:include page="../section/header.jsp" />
+    <!--script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script-->
 
-        <section class="main">
-            <sitemesh:write property='body' />
-        </section>
+</head>
 
-        <jsp:include page="../section/footer.jsp" />
+<body class="account-page">
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+<section>
+    <sitemesh:write property='body' />
+</section>
 
-    </body>
+<jsp:include page="../section/footer.jsp" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+
+</body>
 
 </html>

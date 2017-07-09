@@ -74,7 +74,7 @@
                     <p><i>address:</i> ${element.fullAddress} .</p>
 
                     <p style="text-align:left;">
-                        <img src="${contextPath}/resources/jpg/homes_photos/${element.photoName}" style="width:400px;height:250px;"/>
+                        <img src="${contextPath}/resources/images/homes_photos/${element.photoName}" style="width:400px;height:250px;"/>
                     </p>
                 </li>
             </c:forEach>

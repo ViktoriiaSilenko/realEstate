@@ -4,35 +4,49 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
-<div class="container" style="width: 960px;margin: 0 auto;border-left: 0px solid #c0d3e8;border-right: 0px solid #c0d3e8;">
+<div id="wrapper">
+    <jsp:include page="../section/header.jsp"/>
 
-        <div class="wrapper">
-
+    <main id="main">
+        <div class="account-module">
+            <h1 class="form-signin-heading">Real estate site</h1>
+            <div>
+                <i>This site can be used to find real estates by criteria,
+                    <br/> to contact with its owner for more information,
+                    <br/> to create advertising about your real estate</i>
+            </div>
             <form method="POST" action="${contextPath}/login" name="Login_Form" class="form-signin">
-
-                <p style="text-align:left;">
-                    <h3 class="form-signin-heading">Real estate site</h3>
-                    <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
-                         alt="" >
-                </p>
 
                 <div class="form-group ${error != null ? 'has-error' : ''}">
 
                     <span>${message}</span>
-                    <input name="username" type="text" class="form-control" placeholder="Username"
-                           autofocus="true"/>
-                    <input name="password" type="password" class="form-control" placeholder="Password"/>
+                    <div class="input-wrap">
+                        <input name="username" type="text" class="form-control" placeholder="Username" autofocus="true"/>
+                    </div>
+                    <div class="input-wrap">
+                        <input name="password" type="password" class="form-control" placeholder="Password"/>
+                    </div>
                     <span>${error}</span>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
-                    <h4 class="text-center"><a href="${contextPath}/registration">Create an account</a></h4>
+                    <button class="btn btn-primary btn-block" type="submit">Log In</button>
+                    <a href="${contextPath}/registration">Create an account</a>
                 </div>
 
             </form>
+
         </div>
+    </main>
+
 </div>
 
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
 </br>
 </br>
 </br>
