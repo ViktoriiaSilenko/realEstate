@@ -1,4 +1,4 @@
-package com.realestate.realestateapp.search;
+package com.realestate.realestateapp.model.search;
 
 public class SearchCriteria {
     private String priceFrom;
@@ -39,5 +39,14 @@ public class SearchCriteria {
 
     public void setRoomsNumber(String roomsNumber) {
         this.roomsNumber = roomsNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "SearchCriteria{" +
+                "priceFrom='" + priceFrom + '\'' +
+                ", priceTo='" + priceTo + '\'' +
+                ", roomsNumber='" + roomsNumber + '\'' +
+                '}';
     }
 }

@@ -2,7 +2,7 @@ package com.realestate.realestateapp.controller;
 
 import com.realestate.realestateapp.model.RealEstate;
 import com.realestate.realestateapp.model.User;
-import com.realestate.realestateapp.search.SearchCriteria;
+import com.realestate.realestateapp.model.search.SearchCriteria;
 import com.realestate.realestateapp.service.RealEstateService;
 import com.realestate.realestateapp.service.SecurityService;
 import com.realestate.realestateapp.service.UserService;

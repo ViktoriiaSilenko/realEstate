@@ -52,14 +52,15 @@ CREATE TABLE real_estates (
   owner_id INT(11) NULL DEFAULT NULL,
 
   FOREIGN KEY (owner_id) REFERENCES users (id)
-)
-  ENGINE = InnoDB;
+);
 
+CREATE INDEX index_nrooms ON real_estates (nrooms ASC);
 
+CREATE INDEX index_owner_id ON real_estates (owner_id ASC);
 
 -- Insert data
 
-INSERT INTO users VALUES (1, 'proselyte', 'victory.silenko@gmail.com', '$2a$11$uSXS6rLJ91WjgOHhEGDx..VGs7MkKZV68Lv5r1uwFu7HgtRn3dcXG');
+INSERT INTO users VALUES (1, 'victory', 'victory.silenko@gmail.com', '$2a$11$uSXS6rLJ91WjgOHhEGDx..VGs7MkKZV68Lv5r1uwFu7HgtRn3dcXG');
 
 INSERT INTO roles VALUES (1, 'ROLE_USER');
 INSERT INTO roles VALUES (2, 'ROLE_ADMIN');
