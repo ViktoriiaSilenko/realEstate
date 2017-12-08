@@ -14,7 +14,22 @@ public class RealEstateServiceImpl implements RealEstateService {
     private RealEstateDao realEstateDao;
 
     @Override
+    public void save(RealEstate realEstate) {
+        realEstateDao.save(realEstate);
+    }
+
+    @Override
     public List<RealEstate> findAll() {
         return realEstateDao.findAll();
+    }
+
+    @Override
+    public RealEstate findById(Long id) {
+        return realEstateDao.findOne(id);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        realEstateDao.delete(id);
     }
 }

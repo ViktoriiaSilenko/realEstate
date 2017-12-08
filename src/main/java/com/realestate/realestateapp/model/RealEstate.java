@@ -21,9 +21,6 @@ public class RealEstate {
     @Column(name = "nrooms", unique = false, nullable = false)
     private Byte nrooms;
 
-    @Column(name = "dateIn", unique = false, nullable = false)
-    private Date dateIn;
-
     @Column(name = "initPrice", nullable = false, precision = 10, scale = 2)
     private Double initPrice;
 
@@ -63,14 +60,6 @@ public class RealEstate {
 
     public void setNrooms(Byte nrooms) {
         this.nrooms = nrooms;
-    }
-
-    public Date getDateIn() {
-        return dateIn;
-    }
-
-    public void setDateIn(Date dateIn) {
-        this.dateIn = dateIn;
     }
 
     public Double getInitPrice() {
@@ -148,7 +137,6 @@ public class RealEstate {
                 ", type='" + type + '\'' +
                 ", area=" + area +
                 ", nrooms=" + nrooms +
-                ", dateIn=" + dateIn +
                 ", initPrice=" + initPrice +
                 ", userDescription='" + userDescription + '\'' +
                 ", photoName='" + photoName + '\'' +

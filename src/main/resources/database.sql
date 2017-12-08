@@ -42,7 +42,6 @@ CREATE TABLE addresses (
 CREATE TABLE real_estates (
    id   INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
    area DOUBLE NOT NULL,
-  dateIn DATE NOT NULL,
   initPrice DOUBLE NOT NULL,
   nrooms TINYINT(4) NOT NULL,
   type VARCHAR(100) NOT NULL,
@@ -67,6 +66,6 @@ INSERT INTO roles VALUES (2, 'ROLE_ADMIN');
 
 INSERT INTO user_roles VALUES (1, 2);
 
-insert into real_estates values (1, 50, '2017-05-26', 3000, 2, 'flat', 'Good new flat with 2 big rooms', 'home01.jpg', 'Kyiv, Pushkinska str, 38, flat 86', null);
-insert into real_estates values (2, 70, '2017-05-29', 5000, 3, 'flat', 'Good new flat with 3 rooms', 'home02.jpg', 'Kyiv, Sumska str, 18, flat 5', null);
-insert into real_estates values (3, 36, '2017-05-30', 2000, 1, 'flat', 'Just gostinka', 'home03.jpg', 'Kharkiv, Ivanova str, 380, flat 77', null);
+insert into real_estates values (1, 50, 3000, 2, 'flat', 'Good new flat with 2 big rooms', 'home01.jpg', 'Kyiv, Pushkinska str, 38, flat 86', 14);
+insert into real_estates values (2, 70, 5000, 3, 'flat', 'Good new flat with 3 rooms', 'home02.jpg', 'Kyiv, Sumska str, 18, flat 5', 30);
+insert into real_estates values (3, 36, 2000, 1, 'flat', 'Just gostinka', 'home03.jpg', 'Kharkiv, Ivanova str, 380, flat 77', 26);

@@ -18,7 +18,7 @@
 
                     <li><a href="${contextPath}/manageUsers">Manage users</a></li>
 
-                    <li><a href="#">Manage real estates</a></li>
+                    <li><a href="${contextPath}/manageRealEstates">Manage real estates</a></li>
 
                     <li><a onclick="document.forms['logoutForm'].submit()">Logout <i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
                 </ul>

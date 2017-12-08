@@ -32,6 +32,47 @@ public class FrontController {
     @Autowired
     private UserValidator userValidator;
 
+    // manage real estates
+
+    @RequestMapping(value = "/manageRealEstates", method = RequestMethod.GET)
+    public String manageRealEstates(Model model) {
+
+        model.addAttribute("realEstate", new RealEstate());
+        model.addAttribute("listRealEstates", this.realEstateService.findAll());
+
+        return "manageRealEstates";
+    }
+
+    @RequestMapping("/removeRealEstate/{id}")
+    public String removeRealEstate(@PathVariable("id") int id){
+        this.realEstateService.deleteById(new Long(id));
+
+        return "redirect:/manageRealEstates";
+    }
+
+    @RequestMapping("/editRealEstate/{id}")
+    public String editRealEstate(@PathVariable("id") int id, ModelMap model){
+        model.addAttribute("realEstate", this.realEstateService.findById(new Long(id)));
+        model.addAttribute("listRealEstates", this.realEstateService.findAll());
+
+        return "manageRealEstates";
+    }
+
+    @RequestMapping(value = "/realEstates/add", method = RequestMethod.POST)
+    public String addUser(@ModelAttribute("realEstate") RealEstate realEstate, @RequestParam("realEstateId") int realEstateId,
+                          BindingResult bindingResult){
+        if (!new Long(-1).equals(new Long(realEstateId))) {
+            realEstate.setId(new Long(realEstateId));
+            this.realEstateService.save(realEstate);
+        } else {
+            this.realEstateService.save(realEstate);
+        }
+
+        return "redirect:/manageRealEstates";
+    }
+
+    // manage users
+
     @RequestMapping(value = "/manageUsers", method = RequestMethod.GET)
     public String manageUsers(Model model) {
 
@@ -67,6 +108,8 @@ public class FrontController {
 
         return "redirect:/manageUsers";
     }
+
+
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {

@@ -53,7 +53,6 @@
     <spring:bind path="id">
         <div class="form-group ${status.error ? 'has-error' : ''}" align="center">
 
-            <label for="userId" style="align: left;">Id:</label>
             <form:input type="text" id="userId" path="id" class="form-control" placeholder="Id"
                          disabled="true" maxlength="11" size="11" style="width: 250px;"></form:input>
             <form:errors path="id"></form:errors>
@@ -63,9 +62,8 @@
     <spring:bind path="username">
         <div class="form-group ${status.error ? 'has-error' : ''}" align="center">
 
-            <label for="userName" style="align: left;">Username:</label>
             <form:input type="text" id="userName" path="username" class="form-control"
-                        placeholder="Username" autofocus="true" maxlength="32" size="32" style="width: 250px;"></form:input>
+                        placeholder="username" autofocus="true" maxlength="32" size="32" style="width: 250px;"></form:input>
             <form:errors path="username"></form:errors>
         </div>
     </spring:bind>
@@ -73,9 +71,8 @@
     <spring:bind path="password">
         <div class="form-group ${status.error ? 'has-error' : ''}" align="center">
 
-            <label for="userPassword" style="align: left;">Password:</label>
             <form:input type="password" id="userPassword" path="password" class="form-control"
-                        placeholder="Password" maxlength="32" size="32" style="width: 250px;"></form:input>
+                        placeholder="password" maxlength="32" size="32" style="width: 250px;"></form:input>
             <form:errors path="password"></form:errors>
         </div>
     </spring:bind>
@@ -83,9 +80,8 @@
     <spring:bind path="email">
         <div class="form-group ${status.error ? 'has-error' : ''}" align="center">
 
-            <label for="userEmail" style="align: left;">Email:</label>
             <form:input type="email" id="userEmail" path="email" class="form-control"
-                        placeholder="Email" maxlength="32" size="32" style="width: 250px;"></form:input>
+                        placeholder="email" maxlength="32" size="32" style="width: 250px;"></form:input>
             <form:errors path="email"></form:errors>
         </div>
     </spring:bind>
